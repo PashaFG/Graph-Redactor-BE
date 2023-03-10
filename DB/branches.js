@@ -25,10 +25,10 @@ async function getBranchesById(req, callback) {
 }
 
 async function addBranch(req, callback) {
-  if (!req.body.name || !req.body.userLimit || !req.body.exportColor) return callback(400, "Parametrs not found");
+  if (!req.body.name || !req.body.userLimit || !req.body.exportColor || !req.body.login) return callback(400, "Parametrs not found");
   const collection = req.app.locals.branches;
 
-  const branch = { _id: Date.parse(new Date()), name: req.body.name, userLimit: req.body.userLimit, exportColor: req.body.exportColor }
+  const branch = { _id: Date.parse(new Date()), name: req.body.name, userLimit: req.body.userLimit, login: req.body.login, exportColor: req.body.exportColor }
 
   try {
     await collection.insertOne(branch);
